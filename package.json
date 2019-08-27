@@ -1,6 +1,6 @@
 {
   "name": "static.email",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "The easiest way to send emails on the Web",
   "main": "cjs/index.js",
   "module": "esm/index.js",
@@ -12,7 +12,13 @@
     "rollup": "rollup --config rollup.config.js && echo '/* https://static.email */' >> min.js",
     "test": "istanbul cover test/index.js"
   },
-  "keywords": ["email", "static", "website", "zero", "configuration"],
+  "keywords": [
+    "email",
+    "static",
+    "website",
+    "zero",
+    "configuration"
+  ],
   "author": "Andrea Giammarchi",
   "license": "ISC",
   "dependencies": {
