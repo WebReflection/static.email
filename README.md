@@ -16,7 +16,7 @@ Visit https://static.email/ to start sending emails to yourself from your sites.
 Either `import StaticEmail from 'static.email'` or put the script on top of your page.
 
 ```html
-<script src="https://static.email/js/se.js"></script>
+<script src="https://unpkg.com/static.email"></script>
 <script>
 StaticEmail({
   // your unique identifier for the page
