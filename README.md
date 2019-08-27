@@ -27,6 +27,8 @@ StaticEmail({
   html: '<strong>Great Service!</strong>',
   md: '# Great Service!',
   text: 'Great Service'
-});
+})
+  .then(() => console.log('email sent 🎉'))
+  .catch(console.error);
 </script>
 ```
