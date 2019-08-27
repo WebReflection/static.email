@@ -1,0 +1,32 @@
+{
+  "name": "static.email",
+  "version": "0.0.0",
+  "description": "The easiest way to send emails on the Web",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
+  "unpkg": "min.js",
+  "scripts": {
+    "build": "npm run cjs && npm run rollup && npm test",
+    "cjs": "ascjs esm cjs",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "rollup": "rollup --config rollup.config.js && echo '/* https://static.email */' >> min.js",
+    "test": "istanbul cover test/index.js"
+  },
+  "keywords": ["email", "static", "website", "zero", "configuration"],
+  "author": "Andrea Giammarchi",
+  "license": "ISC",
+  "dependencies": {
+    "safer-function": "^0.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "ascjs": "^3.0.1",
+    "coveralls": "^3.0.6",
+    "istanbul": "^0.4.5",
+    "rollup": "^1.20.2",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.1.1"
+  }
+}
