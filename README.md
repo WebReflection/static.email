@@ -1,5 +1,8 @@
 # StaticEmail - Alpha
 
+[![License: ISC](https://img.shields.io/badge/License-ISC-yellow.svg)](https://opensource.org/licenses/ISC)
+
+
 The easiest way to send emails to yourself on the Web.
 
 
