@@ -23,7 +23,7 @@ global.XMLHttpRequest = class XMLHttpRequest {
   }
   open(method, target, asynchronous) {
     assert(method === 'POST', 'unexpected method');
-    assert(target === 'https://static.email/paperboy', 'unexpected target');
+    assert(target === '/api/paperboy', 'unexpected target');
     assert(asynchronous, 'unexpected synchronous request');
     this._readyState = 1;
   }
@@ -47,22 +47,22 @@ StaticEmail({})
   .then(() => assert(false, 'empty details should fail'))
   .catch(Object);
 
-StaticEmail({token: 'SECRET'})
+StaticEmail({path: '/api/paperboy'})
   .then(() => assert(false, 'only token should fail'))
   .catch(Object);
 
 _status = 200;
-StaticEmail({token: 'SECRET', text: 'Hello World!'})
+StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
   .then(() => {
     _status = 0;
     assert(_params === 'text=Hello%20World!', 'unexpected params');
-    assert(JSON.stringify(_headers) === '{"Content-Type":"application/x-www-form-urlencoded","X-Static-Email-Token":"SECRET"}', 'unexpected headers');
-    StaticEmail({token: 'SECRET', text: 'Hello World!'})
+    assert(JSON.stringify(_headers) === '{"Content-Type":"application/x-www-form-urlencoded"}', 'unexpected headers');
+    StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
       .then(() => exit(new Error('unexpected execution')))
       .catch(err => {
-        assert(err.message === 'network error', 'unexpected error message');
+        assert(err.message === 'Not Found', 'unexpected error message');
         _responseText = 'shenanigans';
-        StaticEmail({token: 'SECRET', text: 'Hello World!'})
+        StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
           .then(() => exit(new Error('unexpected execution')))
           .catch(err => {
             assert(err.message === 'shenanigans', 'unexpected error message');

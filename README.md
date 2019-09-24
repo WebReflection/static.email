@@ -19,8 +19,8 @@ Either `import StaticEmail from 'static.email'` or put the script on top of your
 <script src="https://unpkg.com/static.email"></script>
 <script>
 StaticEmail({
-  // your unique identifier for the page
-  token: 'URL-AUTH-TOKEN',
+  // your end point allowed to send emails
+  path: '/api/paperboy',
 
   // optional fields
   from: 'Some Body <some@body.me>',

@@ -35,23 +35,22 @@ const {get: status} = getOwnPropertyDescriptor(prototype, 'status');
 Object.defineProperty(exports, '__esModule', {value: true}).default = details => new Promise((resolve, reject) => {
 
   const info = keys(details || {});
-  if (call(indexOf, info, 'token') < 0 || (
+  if (call(indexOf, info, 'path') < 0 || (
     call(indexOf, info, 'html') < 0 &&
     call(indexOf, info, 'md') < 0 &&
     call(indexOf, info, 'text') < 0
   ))
-    return reject(new Error('invalid request'));
+    return reject(new Error('Bad Request'));
 
   const xhr = new XMLHttpRequest;
-  call(open, xhr, 'POST', 'https://static.email/paperboy', true);
+  call(open, xhr, 'POST', details.path, true);
   call(setRequestHeader, xhr, 'Content-Type', 'application/x-www-form-urlencoded');
-  call(setRequestHeader, xhr, 'X-Static-Email-Token', details.token);
   call(addEventListener, xhr, 'readystatechange', () => {
     if (call(readyState, xhr) == 4) {
       if (call(status, xhr) == 200)
-        resolve();
+        resolve(call(responseText, xhr));
       else
-        reject(new Error(call(responseText, xhr) || 'network error'));
+        reject(new Error(call(responseText, xhr) || 'Not Found'));
     }
   });
   call(send, xhr, call(
