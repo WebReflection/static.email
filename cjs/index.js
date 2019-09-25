@@ -23,7 +23,7 @@ const {Error, XMLHttpRequest, encodeURIComponent} = window;
 
 const {getOwnPropertyDescriptor, hasOwnProperty, keys} = Object;
 
-const allowed = ['from', 'html', 'md', 'subject', 'text'];
+const allowed = ['from', 'html', 'md', 'recaptcha', 'subject', 'text'];
 const {filter, indexOf, join, map} = allowed;
 
 const {prototype} = XMLHttpRequest;
@@ -34,6 +34,7 @@ const {get: status} = getOwnPropertyDescriptor(prototype, 'status');
 
 const errors = {
   400: 'Bad Request',
+  403: 'Forbidden',
   404: 'Not found',
   405: 'Method Not Allowed',
   501: 'Not Implemented'
