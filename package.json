@@ -9,7 +9,7 @@
     "build": "npm run cjs && npm run rollup && npm test",
     "cjs": "ascjs esm cjs",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "rollup": "rollup --config rollup.config.js && echo '/* https://static.email */' >> min.js",
+    "rollup": "rollup --config rollup.config.js && echo '/*! (c) Andrea Giammarchi - ISC */' >> min.js",
     "test": "istanbul cover test/index.js"
   },
   "keywords": [

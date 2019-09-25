@@ -33,6 +33,7 @@ const {get: status} = getOwnPropertyDescriptor(prototype, 'status');
 
 const errors = {
   400: 'Bad Request',
+  404: 'Not found',
   405: 'Method Not Allowed',
   501: 'Not Implemented'
 };
