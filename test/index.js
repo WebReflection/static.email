@@ -60,12 +60,19 @@ StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
     StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
       .then(() => exit(new Error('unexpected execution')))
       .catch(err => {
-        assert(err.message === 'Not Found', 'unexpected error message');
+        assert(err.message === 'Not Implemented', 'unexpected error message');
         _responseText = 'shenanigans';
         StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
           .then(() => exit(new Error('unexpected execution')))
           .catch(err => {
             assert(err.message === 'shenanigans', 'unexpected error message');
+            _status = 405;
+            _responseText = '';
+            StaticEmail({path: '/api/paperboy', text: 'Hello World!'})
+              .then(() => exit(new Error('unexpected execution')))
+              .catch(err => {
+                assert(err.message === 'Method Not Allowed', 'unexpected error message');
+              })
           })
       })
   })

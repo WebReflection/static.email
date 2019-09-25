@@ -21,7 +21,7 @@ const {call} = require('safer-function');
 
 const {Error, XMLHttpRequest, encodeURIComponent} = window;
 
-const {getOwnPropertyDescriptor, keys} = Object;
+const {getOwnPropertyDescriptor, hasOwnProperty, keys} = Object;
 
 const allowed = ['from', 'html', 'md', 'subject', 'text'];
 const {filter, indexOf, join, map} = allowed;
@@ -32,6 +32,12 @@ const {get: readyState} = getOwnPropertyDescriptor(prototype, 'readyState');
 const {get: responseText} = getOwnPropertyDescriptor(prototype, 'responseText');
 const {get: status} = getOwnPropertyDescriptor(prototype, 'status');
 
+const errors = {
+  400: 'Bad Request',
+  405: 'Method Not Allowed',
+  501: 'Not Implemented'
+};
+
 Object.defineProperty(exports, '__esModule', {value: true}).default = details => new Promise((resolve, reject) => {
 
   const info = keys(details || {});
@@ -40,17 +46,23 @@ Object.defineProperty(exports, '__esModule', {value: true}).default = details =>
     call(indexOf, info, 'md') < 0 &&
     call(indexOf, info, 'text') < 0
   ))
-    return reject(new Error('Bad Request'));
+    return reject(new Error(errors[400]));
 
   const xhr = new XMLHttpRequest;
   call(open, xhr, 'POST', details.path, true);
   call(setRequestHeader, xhr, 'Content-Type', 'application/x-www-form-urlencoded');
   call(addEventListener, xhr, 'readystatechange', () => {
     if (call(readyState, xhr) == 4) {
-      if (call(status, xhr) == 200)
-        resolve(call(responseText, xhr));
+      const result = call(status, xhr);
+      const response = call(responseText, xhr);
+      if (result == 200)
+        resolve(response);
       else
-        reject(new Error(call(responseText, xhr) || 'Not Found'));
+        reject(new Error(
+          response ||
+          (call(hasOwnProperty, errors, result) ?
+            errors[result] : errors[501])
+        ));
     }
   });
   call(send, xhr, call(
