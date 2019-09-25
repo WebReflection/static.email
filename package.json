@@ -1,6 +1,6 @@
 {
   "name": "static.email",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The easiest way to send emails on the Web",
   "main": "cjs/index.js",
   "module": "esm/index.js",
