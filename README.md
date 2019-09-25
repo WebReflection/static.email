@@ -8,7 +8,7 @@ The easiest way to send emails to yourself.
 
 ### Back End
 
-Publish a static website via [zeit now](https://zeit.co/), use [static.email.sas](https://github.com/WebReflection/static.email.ses#readme) as serverless function and call it a day 🎉
+Publish a static website via [zeit now](https://zeit.co/), use [static.email.ses](https://github.com/WebReflection/static.email.ses#readme) as serverless function and call it a day 🎉
 
 
 ### Client Side
